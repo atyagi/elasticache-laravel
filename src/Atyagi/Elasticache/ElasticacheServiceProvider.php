@@ -22,15 +22,17 @@ class ElasticacheServiceProvider extends ServiceProvider {
         $elasticache = new ElasticacheConnector();
         $memcached = $elasticache->connect($servers);
 
-        $this->app['cache']->extend('elasticache', function() use ($memcached) {
+        $this->app->getProviderRepository()->load($this->app, array('Illuminate\Cache\CacheServiceProvider'));
+
+        $this->app->make('session')->extend('elasticache', function() use ($memcached) {
+            return new ElasticacheSessionHandler($memcached, $this->app);
+        });
+
+        $this->app->make('cache')->extend('elasticache', function() use ($memcached) {
             /** @noinspection PhpUndefinedNamespaceInspection */
             /** @noinspection PhpUndefinedClassInspection */
             return new Illuminate\Cache\Repository(
                 new Illuminate\Cache\MemcachedStore($memcached, $this->app['config']->get('cache.prefix')));
-        });
-
-        $this->app['session']->extend('elasticache', function() use ($memcached) {
-            return new ElasticacheSessionHandler($memcached, $this->app);
         });
 	}
 
