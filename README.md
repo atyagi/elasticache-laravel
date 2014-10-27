@@ -2,6 +2,7 @@ Elasticache Laravel
 ===================
 [![Build Status](https://travis-ci.org/atyagi/elasticache-laravel.svg?branch=master)](https://travis-ci.org/atyagi/elasticache-laravel) 
 [![Coverage Status](https://img.shields.io/coveralls/atyagi/elasticache-laravel.svg)](https://coveralls.io/r/atyagi/elasticache-laravel?branch=master)
+[![Packagist](http://img.shields.io/packagist/v/atyagi/elasticache-laravel.svg)](https://packagist.org/packages/atyagi/elasticache-laravel)
 
 AWS Elasticache Session and Cache Drivers for Laravel (Memcached specifically)
 
