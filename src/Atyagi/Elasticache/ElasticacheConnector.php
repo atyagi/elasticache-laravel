@@ -45,7 +45,7 @@ class ElasticacheConnector {
      */
     protected function getMemcached()
     {
-        return new Memcached;
+        return new \Memcached;
     }
 
 } 

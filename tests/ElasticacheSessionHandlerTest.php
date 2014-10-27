@@ -13,7 +13,7 @@ class ElasticacheSessionHandlerTest extends TestCase {
     public function setUp()
     {
         parent::setUp();
-        $this->mockMemcached = m::mock('memcachedClass');
+        $this->mockMemcached = m::mock('Memcached');
         $mockConfig = m::mock('Config');
 
         $mockConfig->shouldReceive('get')
