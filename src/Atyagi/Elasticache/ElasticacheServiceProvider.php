@@ -25,7 +25,7 @@ class ElasticacheServiceProvider extends ServiceProvider {
         // memcached extension not loaded
         if (!$memcached) {
 
-            $this->app->getProviderRepository()->load($this->app, ['Illuminate\Cache\CacheServiceProvider']);
+            $this->app->registerDeferredProvider('Illuminate\Cache\CacheServiceProvider');
 
             $this->app->make('session')->extend('elasticache', function () use ($memcached) {
                 return new ElasticacheSessionHandler($memcached, $this->app);
