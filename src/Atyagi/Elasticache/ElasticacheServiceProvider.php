@@ -31,8 +31,8 @@ class ElasticacheServiceProvider extends ServiceProvider {
         $this->app->make('cache')->extend('elasticache', function() use ($memcached) {
             /** @noinspection PhpUndefinedNamespaceInspection */
             /** @noinspection PhpUndefinedClassInspection */
-            return new Illuminate\Cache\Repository(
-                new Illuminate\Cache\MemcachedStore($memcached, $this->app['config']->get('cache.prefix')));
+            return new \Illuminate\Cache\Repository(
+                new \Illuminate\Cache\MemcachedStore($memcached, $this->app['config']->get('cache.prefix')));
         });
 	}
 
