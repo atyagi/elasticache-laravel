@@ -10,7 +10,7 @@ AWS Elasticache Session and Cache Drivers for Laravel (Memcached specifically)
 
 This package requires the memcached extension for PHP. Please see [this link](http://php.net/manual/en/book.memcached.php) for installation instructions.
 
-With composer, simply add `"atyagi/elasticache-laravel": "dev-master"` to your composer.json.
+With composer, simply add `"atyagi/elasticache-laravel": "~1.1"` to your composer.json.
 
 Once `composer update` is ran, add
 
