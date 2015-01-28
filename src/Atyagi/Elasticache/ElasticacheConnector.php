@@ -13,6 +13,10 @@ class ElasticacheConnector {
      */
     public function connect(array $servers)
     {
+        if (!extension_loaded('memcached')) {
+            return false;
+        }
+        
         $memcached = $this->getMemcached();
 
         // Set Elasticache options here
