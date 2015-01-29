@@ -1,18 +1,20 @@
 <?php namespace Atyagi\Elasticache;
 
-use Memcached;
-
 class ElasticacheConnector {
 
     /**
      * Create a new Memcached connection.
      *
      * @param array $servers
+     * @return false|\Memcached
      * @throws \RuntimeException
-     * @return \Memcached
      */
     public function connect(array $servers)
     {
+        if (!extension_loaded('memcached')) {
+            return false;
+        }
+
         $memcached = $this->getMemcached();
 
         // Set Elasticache options here

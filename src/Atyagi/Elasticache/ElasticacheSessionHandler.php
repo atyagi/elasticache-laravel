@@ -1,7 +1,5 @@
 <?php namespace Atyagi\Elasticache;
 
-use Illuminate\Support\Facades\App;
-use Memcached;
 use SessionHandlerInterface;
 
 class ElasticacheSessionHandler implements SessionHandlerInterface {
@@ -30,7 +28,7 @@ class ElasticacheSessionHandler implements SessionHandlerInterface {
      */
     public function open($savePath, $sessionName)
     {
-        if(!is_null($this->memcached)) {
+        if (!is_null($this->memcached)) {
             return true;
         }
         return false;
@@ -79,7 +77,7 @@ class ElasticacheSessionHandler implements SessionHandlerInterface {
     {
         $sessionId = $this->getSessionId($sessionId);
         $value = $this->memcached->get($sessionId);
-        if(empty($value)) {
+        if (empty($value)) {
             return $this->memcached->add($sessionId, $data, $this->sessionExpiry);
         } else {
             return $this->memcached->replace($sessionId, $data, $this->sessionExpiry);
