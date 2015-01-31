@@ -23,7 +23,7 @@ class ElasticacheServiceProvider extends ServiceProvider {
         $memcached = $elasticache->connect($servers);
 
         // memcached extension not loaded
-        if (!$memcached) {
+        if ($memcached) {
 
             $this->app->registerDeferredProvider('Illuminate\Cache\CacheServiceProvider');
 
