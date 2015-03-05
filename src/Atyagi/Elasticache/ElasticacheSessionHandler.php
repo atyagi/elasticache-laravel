@@ -1,14 +1,17 @@
 <?php namespace Atyagi\Elasticache;
 
+use Illuminate\Contracts\Foundation\Application;
+use Memcached;
 use SessionHandlerInterface;
 
 class ElasticacheSessionHandler implements SessionHandlerInterface {
 
+    /** @var Memcached */
     protected $memcached;
     public $sessionExpiry;
     public $sessionPrefix;
 
-    public function __construct($memcached, $app)
+    public function __construct($memcached, Application $app)
     {
         $this->memcached = $memcached;
         //force expiry to be in seconds from minutes
