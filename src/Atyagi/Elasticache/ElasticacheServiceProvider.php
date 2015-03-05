@@ -1,5 +1,7 @@
 <?php namespace Atyagi\Elasticache;
 
+use Illuminate\Contracts\Config\Repository;
+use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Support\ServiceProvider;
 
 class ElasticacheServiceProvider extends ServiceProvider {
@@ -18,7 +20,10 @@ class ElasticacheServiceProvider extends ServiceProvider {
      */
     public function register()
     {
-        $servers = $this->app['config']->get('cache.memcached');
+        /** @var Repository $config */
+        $config = $this->app->make('config');
+
+        $servers = $config->get('cache.stores.memcached.servers');
         $elasticache = new ElasticacheConnector();
         $memcached = $elasticache->connect($servers);
 
