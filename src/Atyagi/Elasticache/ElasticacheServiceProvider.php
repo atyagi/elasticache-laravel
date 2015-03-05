@@ -1,21 +1,18 @@
 <?php namespace Atyagi\Elasticache;
 
 use Illuminate\Contracts\Config\Repository;
-use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Support\ServiceProvider;
 
-class ElasticacheServiceProvider extends ServiceProvider {
-
+class ElasticacheServiceProvider extends ServiceProvider
+{
     /**
      * Indicates if loading of the provider is deferred.
-     *
      * @var bool
      */
     protected $defer = false;
 
     /**
      * Register the service provider.
-     *
      * @return void
      */
     public function register()
@@ -36,23 +33,21 @@ class ElasticacheServiceProvider extends ServiceProvider {
                 return new ElasticacheSessionHandler($memcached, $this->app);
             });
 
-            $this->app->make('cache')->extend('elasticache', function () use ($memcached) {
+            $this->app->make('cache')->extend('elasticache', function () use ($memcached, $config) {
                 /** @noinspection PhpUndefinedNamespaceInspection */
                 /** @noinspection PhpUndefinedClassInspection */
                 return new \Illuminate\Cache\Repository(
-                    new \Illuminate\Cache\MemcachedStore($memcached, $this->app['config']->get('cache.prefix')));
+                    new \Illuminate\Cache\MemcachedStore($memcached, $config->get('cache.prefix')));
             });
         }
     }
 
     /**
      * Get the services provided by the provider.
-     *
      * @return array
      */
     public function provides()
     {
         return [];
     }
-
 }
