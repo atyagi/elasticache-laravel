@@ -1,10 +1,9 @@
 <?php namespace Atyagi\Elasticache;
 
-class ElasticacheConnector {
-
+class ElasticacheConnector
+{
     /**
      * Create a new Memcached connection.
-     *
      * @param array $servers
      * @return false|\Memcached
      * @throws \RuntimeException
@@ -25,13 +24,11 @@ class ElasticacheConnector {
         // For each server in the array, we'll just extract the configuration and add
         // the server to the Memcached connection. Once we have added all of these
         // servers we'll verify the connection is successful and return it back.
-        foreach ($servers as $server)
-        {
+        foreach ($servers as $server) {
             $memcached->addServer($server['host'], $server['port'], $server['weight']);
         }
 
-        if ($memcached->getVersion() === false)
-        {
+        if ($memcached->getVersion() === false) {
             throw new \RuntimeException("Could not establish Memcached connection.");
         }
 
@@ -40,12 +37,10 @@ class ElasticacheConnector {
 
     /**
      * Get a new Memcached instance.
-     *
      * @return \Memcached
      */
     protected function getMemcached()
     {
         return new \Memcached;
     }
-
-} 
+}

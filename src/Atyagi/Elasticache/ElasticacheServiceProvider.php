@@ -2,18 +2,16 @@
 
 use Illuminate\Support\ServiceProvider;
 
-class ElasticacheServiceProvider extends ServiceProvider {
-
+class ElasticacheServiceProvider extends ServiceProvider
+{
     /**
      * Indicates if loading of the provider is deferred.
-     *
      * @var bool
      */
     protected $defer = false;
 
     /**
      * Register the service provider.
-     *
      * @return void
      */
     public function register()
@@ -25,7 +23,7 @@ class ElasticacheServiceProvider extends ServiceProvider {
         // memcached extension not loaded
         if ($memcached) {
 
-			$this->app->register('Illuminate\Cache\CacheServiceProvider');
+            $this->app->register('Illuminate\Cache\CacheServiceProvider');
 
             $this->app->make('session')->extend('elasticache', function () use ($memcached) {
                 return new ElasticacheSessionHandler($memcached, $this->app);
@@ -42,12 +40,10 @@ class ElasticacheServiceProvider extends ServiceProvider {
 
     /**
      * Get the services provided by the provider.
-     *
      * @return array
      */
     public function provides()
     {
         return [];
     }
-
 }
