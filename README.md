@@ -1,6 +1,6 @@
 Elasticache Laravel
 ===================
-[![Build Status](https://travis-ci.org/atyagi/elasticache-laravel.svg?branch=master)](https://travis-ci.org/atyagi/elasticache-laravel) 
+[![Build Status](https://travis-ci.org/atyagi/elasticache-laravel.svg?branch=master)](https://travis-ci.org/atyagi/elasticache-laravel)
 [![Coverage Status](https://img.shields.io/coveralls/atyagi/elasticache-laravel.svg?style=flat)](https://coveralls.io/r/atyagi/elasticache-laravel?branch=master)
 [![Packagist](http://img.shields.io/packagist/v/atyagi/elasticache-laravel.svg?style=flat)](https://packagist.org/packages/atyagi/elasticache-laravel)
 
@@ -28,11 +28,25 @@ At this point, inside of `app/session.php` and `app/cache.php`, you can use `ela
 
 All configuration lives within `app/session.php` and `app/cache.php`. The key ones are below:
 
-#### Session.php
+#### session.php
 - lifetime -- the session lifetime within the Memcached environment
 - cookie -- this is the prefix for the session ID to prevent clashing
 
-#### Cache.php
-- memcached -- follow the Laravel defaults for host/port information
-
-
+#### cache.php
+Note: for Laravel 5, make sure to add this info to the stores array as follows:
+````php
+'stores' => [
+  ...
+  'elasticache' => [
+    'driver' => 'memcached',
+    'servers' => [
+      [
+        'host' => '<YOUR HOST>',
+        'port' => '<YOUR_PORT>',
+        'weight' => '<YOUR_WEIGHT>'
+        ]
+      ]
+    ]
+    ...
+  ]
+````
