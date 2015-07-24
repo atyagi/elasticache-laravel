@@ -37,7 +37,7 @@ Note: for Laravel 5, make sure to add this info to the stores array as follows:
 ````php
 'stores' => [
   ...
-  'elasticache' => [
+  'memcached' => [
     'driver' => 'memcached',
     'servers' => [
       [
