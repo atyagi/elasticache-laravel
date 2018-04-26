@@ -21,6 +21,12 @@ class ElasticacheServiceProvider extends ServiceProvider
         $config = $this->app->make('config');
 
         $servers = $config->get('cache.stores.memcached.servers');
+
+        // No servers defined
+        if ($servers === null) {
+            return;
+        }
+
         $elasticache = new ElasticacheConnector();
         $memcached = $elasticache->connect($servers);
 
